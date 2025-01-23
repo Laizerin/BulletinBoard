@@ -1,0 +1,57 @@
+﻿@model List<BulletinBoard.Models.Advertisement>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<style>
+    /* Убираем подчёркивание и меняем цвет текста */
+    .no-underline {
+        text-decoration: none;
+        color: inherit; /* Наследует цвет текста от родителя */
+        cursor: pointer; /* Курсор в виде указателя, чтобы показать, что текст кликабельный */
+    }
+
+        .no-underline:hover {
+            text-decoration: none; /* Убираем подчёркивание при наведении */
+            color: inherit; /* Цвет текста не меняется при наведении */
+        }
+</style>
+
+<h2>Объявления</h2>
+
+<form method="get" action="@Url.Action("Index")">
+    <input type="text" name="search" placeholder="Введите жанр" />
+    <input type="submit" value="Search" />
+</form>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Genre</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var ad in Model)
+    {
+        <tr>
+            <td class="btn btn-primary">
+                <a href="@Url.Action("Details", new { id = ad.Id })" class="no-underline">
+                    @ad.Title
+                </a>
+            </td>
+            <td>@ad.Description</td>
+            <td>@ad.Genre</td>
+            <td>
+                @if (ViewBag.FavoriteGenres != null && ViewBag.FavoriteGenres.Contains(ad.Genre))
+                {
+                    <span style="color: green;">★ In Favorites</span>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    <a href="@Url.Action("Logout", "Account")" class="btn btn-warning">Logout</a>
+</p>

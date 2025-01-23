@@ -1,0 +1,76 @@
+﻿@model List<string>
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile</h2>
+
+@if (ViewBag.Role == "Admin")
+{
+    <h3>Genre Statistics</h3>
+    <table>
+        <tr>
+            <th>Genre</th>
+            <th>Users Subscribed</th>
+        </tr>
+        @foreach (var genreStat in ViewBag.GenreStatistics)
+        {
+            <tr>
+                <td>@genreStat.Key</td>
+                <td>@genreStat.Value</td>
+            </tr>
+        }
+    </table>
+}
+
+<hr />
+<p>
+    Role: @ViewBag.Role <hr />
+    Username: @ViewBag.Username
+</p>
+
+@if (ViewBag.Role == "Admin")
+{
+    <h3>Add New Advertisement</h3>
+    <form method="post" action="@Url.Action("AddAdvertisement", "Home")">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required />
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required />
+        </div>
+        <div>
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" required />
+        </div>
+        <div>
+            <input type="submit" value="Add Advertisement" class="btn btn-primary" />
+        </div>
+    </form>
+}
+
+@if (Model != null)
+{
+    <h3>Favorite Genres</h3>
+    <ul>
+        @foreach (var genre in Model)
+        {
+            <li>@genre</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No favorite genres found.</p>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<p>
+    <a href="@Url.Action("Logout", "Account")" class="btn btn-warning">Logout</a>
+</p>

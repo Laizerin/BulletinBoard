@@ -1,0 +1,63 @@
+﻿@model BulletinBoard.Models.Advertisement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Title</h2>
+<p>@Model.Description</p>
+<p><strong>Genre:</strong> @Model.Genre</p>
+
+<!-- Контекстная реклама -->
+<div>
+    @{
+        var photoPath = "";
+        switch (Model.Genre)
+        {
+            case "Игры":
+                photoPath = "/photos/games.jpg";
+                break;
+            case "Фильмы":
+                photoPath = "/photos/movies.webp";
+                break;
+            case "Музыка":
+                photoPath = "/photos/music.jfif";
+                break;
+            case "Книги":
+                photoPath = "/photos/books.jfif";
+                break;
+            default:
+                photoPath = ""; // Если жанр не определён
+                break;
+        }
+
+        if (!string.IsNullOrEmpty(photoPath))
+        {
+            <h3>Контекстная реклама</h3>
+            <img src="@photoPath" alt="Контекстная реклама" width="300" height="200" />
+        }
+    }
+</div>
+
+@if (ViewBag.FavoriteGenres != null && ViewBag.FavoriteGenres.Contains(Model.Genre))
+{
+    <p>
+        <a href="@Url.Action("AddToFavorites", new { id = Model.Id })" class="btn btn-danger">
+            Remove from Favorites
+        </a>
+    </p>
+}
+else
+{
+    <p>
+        <a href="@Url.Action("AddToFavorites", new { id = Model.Id })" class="btn btn-success">
+            Add to Favorites
+        </a>
+    </p>
+}
+
+<p>
+    <a href="@Url.Action("Index")" class="btn btn-info">
+        Back to List
+    </a>
+</p>
