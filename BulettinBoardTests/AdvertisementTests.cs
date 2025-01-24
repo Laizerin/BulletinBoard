@@ -18,7 +18,7 @@ namespace BulettinBoardTests
             user.FavoriteGenres.Add(genre);
 
             // Assert
-            Assert.Contains(genre, user.FavoriteGenres);
+            Assert.That(user.FavoriteGenres, Has.Member(genre)); // Используем Has.Member
         }
 
         [Test]
@@ -26,10 +26,10 @@ namespace BulettinBoardTests
         {
             // Arrange
             var users = new List<User>
-            {
-                new User { Id = 1, Username = "user1", Password = "pass1" },
-                new User { Id = 2, Username = "user2", Password = "pass2" }
-            };
+    {
+        new User { Id = 1, Username = "user1", Password = "pass1" },
+        new User { Id = 2, Username = "user2", Password = "pass2" }
+    };
             var username = "user1";
             var password = "pass1";
 
@@ -37,8 +37,8 @@ namespace BulettinBoardTests
             var user = users.FirstOrDefault(u => u.Username == username && u.Password == password);
 
             // Assert
-            Assert.IsNotNull(user); // Пользователь должен быть найден
-            Assert.AreEqual(username, user.Username); // Имя пользователя должно совпадать
+            Assert.That(user, Is.Not.Null); // Пользователь должен быть найден
+            Assert.That(user.Username, Is.EqualTo(username)); // Имя пользователя должно совпадать
         }
 
         [Test]
@@ -73,9 +73,9 @@ namespace BulettinBoardTests
             }
 
             // Assert
-            Assert.AreEqual(2, genreStatistics["Игры"]); // Ожидаем 2 пользователя с жанром "Игры"
-            Assert.AreEqual(2, genreStatistics["Фильмы"]); // Ожидаем 2 пользователя с жанром "Фильмы"
-            Assert.AreEqual(1, genreStatistics["Музыка"]); // Ожидаем 1 пользователя с жанром "Музыка"
+            Assert.That(genreStatistics["Игры"], Is.EqualTo(2)); // Ожидаем 2 пользователя с жанром "Игры"
+            Assert.That(genreStatistics["Фильмы"], Is.EqualTo(2)); // Ожидаем 2 пользователя с жанром "Фильмы"
+            Assert.That(genreStatistics["Музыка"], Is.EqualTo(1)); // Ожидаем 1 пользователя с жанром "Музыка"
         }
     }
 }
