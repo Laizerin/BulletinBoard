@@ -9,13 +9,13 @@ namespace BulletinBoard.Controllers
     {
         private static List<Advertisement> advertisements = new List<Advertisement>
     {
-        new Advertisement { Id = 1, Title = "Ad 1", Description = "Описание", Genre = "Игры" },
-        new Advertisement { Id = 2, Title = "Ad 2", Description = "Описание", Genre = "Фильмы" },
-        new Advertisement { Id = 3, Title = "Ad 3", Description = "Описание", Genre = "Музыка" },
-        new Advertisement { Id = 4, Title = "Ad 4", Description = "Описание", Genre = "Фильмы" },
-        new Advertisement { Id = 5, Title = "Ad 5", Description = "Описание", Genre = "Книги" },
-        new Advertisement { Id = 6, Title = "Ad 6", Description = "Описание", Genre = "Игры" },
-        new Advertisement { Id = 7, Title = "Ad 7", Description = "Описание", Genre = "Музыка" }
+        new Advertisement { Id = 1, Title = "Quake 1996", Description = "Вы — безымянный солдат, разбуженный утром своим командиром.", Genre = "Игры" },
+        new Advertisement { Id = 2, Title = "Крёстный Отец", Description = "Криминальная сага, повествующая о нью-йоркской сицилийской мафиозной семье Корлеоне.", Genre = "Фильмы" },
+        new Advertisement { Id = 3, Title = "Yellow Submarine", Description = "By Beatles", Genre = "Музыка" },
+        new Advertisement { Id = 4, Title = "Назад в будущее", Description = "Подросток Марти с помощью машины времени, сооружённой его другом-профессором доком Брауном, попадает из 80-х в далекие 50-е.", Genre = "Фильмы" },
+        new Advertisement { Id = 5, Title = "Оно", Description = "Семеро друзей вступают в противоборство с потусторонней тварью.", Genre = "Книги" },
+        new Advertisement { Id = 6, Title = "Crysis", Description = "Вам необходимо отправиться на остров, где был обнаружен звездолет инопланетян", Genre = "Игры" },
+        new Advertisement { Id = 7, Title = "My Way", Description = "By Frank Sinatra", Genre = "Музыка" }
     };
 
         private static List<User> users = new List<User>
